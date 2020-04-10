@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+	<style type="text/css">
+		
+		.box{
+			height: 100px;
+			width: 100px;
+			background-image: url(box.png);
+			background-size: 100% 100%;
+			position: absolute;
+		}
+		.wall{
+			height: 100px;
+			width: 100px;
+			background-image: url(wall.png);
+			background-size: 100% 100%;
+			position: absolute;
+		}
+		.bg{
+			height: 100px;
+			width: 100px;
+			background-image: url(box.png);
+			background-size: 100% 100%;
+			position: absolute;
+		}
+		.player{
+			height: 100px;
+			width: 100px;
+			background-color: blue;
+			border: 1px solid black;
+			background-size: 100% 100%;
+			position: absolute;
+			transition: 0.5s;
+		}
+		.bomb{
+			height: 100px;
+			width: 100px;
+			background-image: url(bomb.png);
+			background-size: 100% 100%;
+			position: absolute;
+			transition: 3s;
+			opacity: 0%;
+		}
+		.up{
+			height: 100px;
+			width: 100px;
+			background-image: url("up.png");
+			background-size: 100% 100%;
+			position: absolute;
+		}
+		.down{
+			height: 100px;
+			width: 100px;
+			background-image: url("down.png");
+			background-size: 100% 100%;
+			position: absolute;
+		}
+		.left{
+			height: 100px;
+			width: 100px;
+			background-image: url("left.png");
+			background-size: 100% 100%;
+			position: absolute;
+		}
+		.right{
+			height: 100px;
+			width: 100px;
+			background-image: url("right.png");
+			background-size: 100% 100%;
+			position: absolute;
+		}
+		.upGrey{
+			height: 100px;
+			width: 100px;
+			background-image: url("upGrey.png");
+			background-size: 100% 100%;
+			position: absolute;
+		}
+		.downGrey{
+			height: 100px;
+			width: 100px;
+			background-image: url("downGrey.png");
+			background-size: 100% 100%;
+			position: absolute;
+		}
+		.leftGrey{
+			height: 100px;
+			width: 100px;
+			background-image: url("leftGrey.png");
+			background-size: 100% 100%;
+			position: absolute;
+		}
+		.rightGrey{
+			height: 100px;
+			width: 100px;
+			background-image: url("rightGrey.png");
+			background-size: 100% 100%;
+			position: absolute;
+		}
+
+	</style>
+
+</head>
+<body>
+	<div class="bg"        style="top: 0000px; left: 0100px;"></div>
+	<div class="bg"        style="top: 0000px; left: 0200px;"></div>
+	<div class="bg"        style="top: 0000px; left: 0300px;"></div>
+	<div class="bg"        style="top: 0000px; left: 0400px;"></div>
+	<div class="bg"        style="top: 0000px; left: 0500px;"></div>
+	<div class="bg"        style="top: 0000px; left: 0600px;"></div>
+	<div class="bg"        style="top: 0000px; left: 0700px;"></div>
+	<div class="bg"        style="top: 0000px; left: 0800px;"></div>
+	<div class="bg"        style="top: 0000px; left: 0900px;"></div>
+	<div class="bg"        style="top: 0000px; left: 1000px;"></div>
+	<div class="bg"        style="top: 0000px; left: 1100px;"></div>
+	<div class="bg"        style="top: 0000px; left: 1200px;"></div>
+	<div class="bg"        style="top: 0000px; left: 1300px;"></div>
+	<div class="bg"        style="top: 0000px; left: 1400px;"></div>
+	<div class="bg"        style="top: 0000px; left: 1500px;"></div>
+	<div class="bg"        style="top: 0000px; left: 1600px;"></div>
+	<div class="bg"        style="top: 0000px; left: 1700px;"></div>
+	<div class="bg"        style="top: 0000px; left: 1800px;"></div>
+	<div class="bg"        style="top: 0000px; left: 1900px;"></div>
+	<div class="bg"        style="top: 0000px; left: 2000px;"></div>
+
+	<div class="bg"        style="top: 1100px; left: 0100px;"></div>
+	<div class="bg"        style="top: 1100px; left: 0200px;"></div>
+	<div class="bg"        style="top: 1100px; left: 0300px;"></div>
+	<div class="bg"        style="top: 1100px; left: 0400px;"></div>
+	<div class="bg"        style="top: 1100px; left: 0500px;"></div>
+	<div class="bg"        style="top: 1100px; left: 0600px;"></div>
+	<div class="bg"        style="top: 1100px; left: 0700px;"></div>
+	<div class="bg"        style="top: 1100px; left: 0800px;"></div>
+	<div class="bg"        style="top: 1100px; left: 0900px;"></div>
+	<div class="bg"        style="top: 1100px; left: 1000px;"></div>
+	<div class="bg"        style="top: 1100px; left: 1100px;"></div>
+	<div class="bg"        style="top: 1100px; left: 1200px;"></div>
+	<div class="bg"        style="top: 1100px; left: 1300px;"></div>
+	<div class="bg"        style="top: 1100px; left: 1400px;"></div>
+	<div class="bg"        style="top: 1100px; left: 1500px;"></div>
+	<div class="bg"        style="top: 1100px; left: 1600px;"></div>
+	<div class="bg"        style="top: 1100px; left: 1700px;"></div>
+	<div class="bg"        style="top: 1100px; left: 1800px;"></div>
+	<div class="bg"        style="top: 1100px; left: 1900px;"></div>
+	<div class="bg"        style="top: 1100px; left: 2000px;"></div>
+
+	<div class="box 000"   style="top: 0000px; left: 0000px;"></div>
+
+	<div class="box 001"   style="top: 0100px; left: 0100px;"></div>
+	<div class="box 002"   style="top: 0100px; left: 0200px;"></div>
+	<div class="box 003"   style="top: 0100px; left: 0300px;"></div>
+	<div class="box 004"   style="top: 0100px; left: 0400px;"></div>
+	<div class="box 005"   style="top: 0100px; left: 0500px;"></div>
+	<div class="box 006"   style="top: 0100px; left: 0600px;"></div>
+	<div class="box 007"   style="top: 0100px; left: 0700px;"></div>
+	<div class="box 008"   style="top: 0100px; left: 0800px;"></div>
+	<div class="box 009"   style="top: 0100px; left: 0900px;"></div>
+	<div class="box 010"   style="top: 0100px; left: 1000px;"></div>
+	<div class="box 011"   style="top: 0100px; left: 1100px;"></div>
+	<div class="box 012"   style="top: 0100px; left: 1200px;"></div>
+	<div class="box 013"   style="top: 0100px; left: 1300px;"></div>
+	<div class="box 014"   style="top: 0100px; left: 1400px;"></div>
+	<div class="box 015"   style="top: 0100px; left: 1500px;"></div>
+	<div class="box 016"   style="top: 0100px; left: 1600px;"></div>
+	<div class="box 017"   style="top: 0100px; left: 1700px;"></div>
+	<div class="box 018"   style="top: 0100px; left: 1800px;"></div>
+	<div class="box 019"   style="top: 0100px; left: 1900px;"></div>
+	<div class="box 020"   style="top: 0100px; left: 2000px;"></div>
+
+	<div class="box 021"   style="top: 0200px; left: 0100px;"></div>
+	<div class="box 022"   style="top: 0200px; left: 0200px;"></div>
+	<div class="box 023"   style="top: 0200px; left: 0300px;"></div>
+	<div class="box 024"   style="top: 0200px; left: 0400px;"></div>
+	<div class="box 025"   style="top: 0200px; left: 0500px;"></div>
+	<div class="box 026"   style="top: 0200px; left: 0600px;"></div>
+	<div class="box 027"   style="top: 0200px; left: 0700px;"></div>
+	<div class="box 028"   style="top: 0200px; left: 0800px;"></div>
+	<div class="box 029"   style="top: 0200px; left: 0900px;"></div>
+	<div class="box 030"   style="top: 0200px; left: 1000px;"></div>
+	<div class="box 031"   style="top: 0200px; left: 1100px;"></div>
+	<div class="box 032"   style="top: 0200px; left: 1200px;"></div>
+	<div class="box 033"   style="top: 0200px; left: 1300px;"></div>
+	<div class="box 034"   style="top: 0200px; left: 1400px;"></div>
+	<div class="box 035"   style="top: 0200px; left: 1500px;"></div>
+	<div class="box 036"   style="top: 0200px; left: 1600px;"></div>
+	<div class="box 037"   style="top: 0200px; left: 1700px;"></div>
+	<div class="box 038"   style="top: 0200px; left: 1800px;"></div>
+	<div class="box 039"   style="top: 0200px; left: 1900px;"></div>
+	<div class="box 040"   style="top: 0200px; left: 2000px;"></div>
+
+	<div class="box 041"   style="top: 0300px; left: 0100px;"></div>
+	<div class="box 042"   style="top: 0300px; left: 0200px;"></div>
+	<div class="box 043"   style="top: 0300px; left: 0300px;"></div>
+	<div class="box 044"   style="top: 0300px; left: 0400px;"></div>
+	<div class="box 045"   style="top: 0300px; left: 0500px;"></div>
+	<div class="box 046"   style="top: 0300px; left: 0600px;"></div>
+	<div class="box 047"   style="top: 0300px; left: 0700px;"></div>
+	<div class="box 048"   style="top: 0300px; left: 0800px;"></div>
+	<div class="box 049"   style="top: 0300px; left: 0900px;"></div>
+	<div class="box 050"   style="top: 0300px; left: 1000px;"></div>
+	<div class="box 051"   style="top: 0300px; left: 1100px;"></div>
+	<div class="box 052"   style="top: 0300px; left: 1200px;"></div>
+	<div class="box 053"   style="top: 0300px; left: 1300px;"></div>
+	<div class="box 054"   style="top: 0300px; left: 1400px;"></div>
+	<div class="box 055"   style="top: 0300px; left: 1500px;"></div>
+	<div class="box 056"   style="top: 0300px; left: 1600px;"></div>
+	<div class="box 057"   style="top: 0300px; left: 1700px;"></div>
+	<div class="box 058"   style="top: 0300px; left: 1800px;"></div>
+	<div class="box 059"   style="top: 0300px; left: 1900px;"></div>
+	<div class="box 060"   style="top: 0300px; left: 2000px;"></div>
+
+	<div class="box 061"   style="top: 0400px; left: 0100px;"></div>
+	<div class="box 062"   style="top: 0400px; left: 0200px;"></div>
+	<div class="box 063"   style="top: 0400px; left: 0300px;"></div>
+	<div class="box 064"   style="top: 0400px; left: 0400px;"></div>
+	<div class="box 065"   style="top: 0400px; left: 0500px;"></div>
+	<div class="box 066"   style="top: 0400px; left: 0600px;"></div>
+	<div class="box 067"   style="top: 0400px; left: 0700px;"></div>
+	<div class="box 068"   style="top: 0400px; left: 0800px;"></div>
+	<div class="box 069"   style="top: 0400px; left: 0900px;"></div>
+	<div class="box 070"   style="top: 0400px; left: 1000px;"></div>
+	<div class="box 071"   style="top: 0400px; left: 1100px;"></div>
+	<div class="box 072"   style="top: 0400px; left: 1200px;"></div>
+	<div class="box 073"   style="top: 0400px; left: 1300px;"></div>
+	<div class="box 074"   style="top: 0400px; left: 1400px;"></div>
+	<div class="box 075"   style="top: 0400px; left: 1500px;"></div>
+	<div class="box 076"   style="top: 0400px; left: 1600px;"></div>
+	<div class="box 077"   style="top: 0400px; left: 1700px;"></div>
+	<div class="box 078"   style="top: 0400px; left: 1800px;"></div>
+	<div class="box 079"   style="top: 0400px; left: 1900px;"></div>
+	<div class="box 080"   style="top: 0400px; left: 2000px;"></div>
+
+	<div class="box 081"   style="top: 0500px; left: 0100px;"></div>
+	<div class="box 082"   style="top: 0500px; left: 0200px;"></div>
+	<div class="box 083"   style="top: 0500px; left: 0300px;"></div>
+	<div class="box 084"   style="top: 0500px; left: 0400px;"></div>
+	<div class="box 085"   style="top: 0500px; left: 0500px;"></div>
+	<div class="box 086"   style="top: 0500px; left: 0600px;"></div>
+	<div class="box 087"   style="top: 0500px; left: 0700px;"></div>
+	<div class="box 088"   style="top: 0500px; left: 0800px;"></div>
+	<div class="box 089"   style="top: 0500px; left: 0900px;"></div>
+	<div class="box 090"   style="top: 0500px; left: 1000px;"></div>
+	<div class="box 091"   style="top: 0500px; left: 1100px;"></div>
+	<div class="box 092"   style="top: 0500px; left: 1200px;"></div>
+	<div class="box 093"   style="top: 0500px; left: 1300px;"></div>
+	<div class="box 094"   style="top: 0500px; left: 1400px;"></div>
+	<div class="box 095"   style="top: 0500px; left: 1500px;"></div>
+	<div class="box 096"   style="top: 0500px; left: 1600px;"></div>
+	<div class="box 097"   style="top: 0500px; left: 1700px;"></div>
+	<div class="box 098"   style="top: 0500px; left: 1800px;"></div>
+	<div class="box 099"   style="top: 0500px; left: 1900px;"></div>
+	<div class="box 100"   style="top: 0500px; left: 2000px;"></div>
+
+	<div class="box 101"   style="top: 0600px; left: 0100px;"></div>
+	<div class="box 102"   style="top: 0600px; left: 0200px;"></div>
+	<div class="box 103"   style="top: 0600px; left: 0300px;"></div>
+	<div class="box 104"   style="top: 0600px; left: 0400px;"></div>
+	<div class="box 105"   style="top: 0600px; left: 0500px;"></div>
+	<div class="box 106"   style="top: 0600px; left: 0600px;"></div>
+	<div class="box 107"   style="top: 0600px; left: 0700px;"></div>
+	<div class="box 108"   style="top: 0600px; left: 0800px;"></div>
+	<div class="box 109"   style="top: 0600px; left: 0900px;"></div>
+	<div class="box 110"   style="top: 0600px; left: 1000px;"></div>
+	<div class="box 111"   style="top: 0600px; left: 1100px;"></div>
+	<div class="box 112"   style="top: 0600px; left: 1200px;"></div>
+	<div class="box 113"   style="top: 0600px; left: 1300px;"></div>
+	<div class="box 114"   style="top: 0600px; left: 1400px;"></div>
+	<div class="box 115"   style="top: 0600px; left: 1500px;"></div>
+	<div class="box 116"   style="top: 0600px; left: 1600px;"></div>
+	<div class="box 117"   style="top: 0600px; left: 1700px;"></div>
+	<div class="box 118"   style="top: 0600px; left: 1800px;"></div>
+	<div class="box 119"   style="top: 0600px; left: 1900px;"></div>
+	<div class="box 120"   style="top: 0600px; left: 2000px;"></div>
+
+	<div class="box 121"   style="top: 0700px; left: 0100px;"></div>
+	<div class="box 122"   style="top: 0700px; left: 0200px;"></div>
+	<div class="box 123"   style="top: 0700px; left: 0300px;"></div>
+	<div class="box 124"   style="top: 0700px; left: 0400px;"></div>
+	<div class="box 125"   style="top: 0700px; left: 0500px;"></div>
+	<div class="box 126"   style="top: 0700px; left: 0600px;"></div>
+	<div class="box 127"   style="top: 0700px; left: 0700px;"></div>
+	<div class="box 128"   style="top: 0700px; left: 0800px;"></div>
+	<div class="box 129"   style="top: 0700px; left: 0900px;"></div>
+	<div class="box 130"   style="top: 0700px; left: 1000px;"></div>
+	<div class="box 131"   style="top: 0700px; left: 1100px;"></div>
+	<div class="box 132"   style="top: 0700px; left: 1200px;"></div>
+	<div class="box 133"   style="top: 0700px; left: 1300px;"></div>
+	<div class="box 134"   style="top: 0700px; left: 1400px;"></div>
+	<div class="box 135"   style="top: 0700px; left: 1500px;"></div>
+	<div class="box 136"   style="top: 0700px; left: 1600px;"></div>
+	<div class="box 137"   style="top: 0700px; left: 1700px;"></div>
+	<div class="box 138"   style="top: 0700px; left: 1800px;"></div>
+	<div class="box 139"   style="top: 0700px; left: 1900px;"></div>
+	<div class="box 140"   style="top: 0700px; left: 2000px;"></div>
+
+	<div class="box 141"   style="top: 0800px; left: 0100px;"></div>
+	<div class="box 142"   style="top: 0800px; left: 0200px;"></div>
+	<div class="box 143"   style="top: 0800px; left: 0300px;"></div>
+	<div class="box 144"   style="top: 0800px; left: 0400px;"></div>
+	<div class="box 145"   style="top: 0800px; left: 0500px;"></div>
+	<div class="box 146"   style="top: 0800px; left: 0600px;"></div>
+	<div class="box 147"   style="top: 0800px; left: 0700px;"></div>
+	<div class="box 148"   style="top: 0800px; left: 0800px;"></div>
+	<div class="box 149"   style="top: 0800px; left: 0900px;"></div>
+	<div class="box 150"   style="top: 0800px; left: 1000px;"></div>
+	<div class="box 151"   style="top: 0800px; left: 1100px;"></div>
+	<div class="box 152"   style="top: 0800px; left: 1200px;"></div>
+	<div class="box 153"   style="top: 0800px; left: 1300px;"></div>
+	<div class="box 154"   style="top: 0800px; left: 1400px;"></div>
+	<div class="box 155"   style="top: 0800px; left: 1500px;"></div>
+	<div class="box 156"   style="top: 0800px; left: 1600px;"></div>
+	<div class="box 157"   style="top: 0800px; left: 1700px;"></div>
+	<div class="box 158"   style="top: 0800px; left: 1800px;"></div>
+	<div class="box 159"   style="top: 0800px; left: 1900px;"></div>
+	<div class="box 160"   style="top: 0800px; left: 2000px;"></div>
+
+	<div class="box 161"   style="top: 0900px; left: 0100px;"></div>
+	<div class="box 162"   style="top: 0900px; left: 0200px;"></div>
+	<div class="box 163"   style="top: 0900px; left: 0300px;"></div>
+	<div class="box 164"   style="top: 0900px; left: 0400px;"></div>
+	<div class="box 165"   style="top: 0900px; left: 0500px;"></div>
+	<div class="box 166"   style="top: 0900px; left: 0600px;"></div>
+	<div class="box 167"   style="top: 0900px; left: 0700px;"></div>
+	<div class="box 168"   style="top: 0900px; left: 0800px;"></div>
+	<div class="box 169"   style="top: 0900px; left: 0900px;"></div>
+	<div class="box 170"   style="top: 0900px; left: 1000px;"></div>
+	<div class="box 171"   style="top: 0900px; left: 1100px;"></div>
+	<div class="box 172"   style="top: 0900px; left: 1200px;"></div>
+	<div class="box 173"   style="top: 0900px; left: 1300px;"></div>
+	<div class="box 174"   style="top: 0900px; left: 1400px;"></div>
+	<div class="box 175"   style="top: 0900px; left: 1500px;"></div>
+	<div class="box 176"   style="top: 0900px; left: 1600px;"></div>
+	<div class="box 177"   style="top: 0900px; left: 1700px;"></div>
+	<div class="box 178"   style="top: 0900px; left: 1800px;"></div>
+	<div class="box 179"   style="top: 0900px; left: 1900px;"></div>
+	<div class="box 180"   style="top: 0900px; left: 2000px;"></div>
+
+	<div class="box 181"   style="top: 1000px; left: 0100px;"></div>
+	<div class="box 182"   style="top: 1000px; left: 0200px;"></div>
+	<div class="box 183"   style="top: 1000px; left: 0300px;"></div>
+	<div class="box 184"   style="top: 1000px; left: 0400px;"></div>
+	<div class="box 185"   style="top: 1000px; left: 0500px;"></div>
+	<div class="box 186"   style="top: 1000px; left: 0600px;"></div>
+	<div class="box 187"   style="top: 1000px; left: 0700px;"></div>
+	<div class="box 188"   style="top: 1000px; left: 0800px;"></div>
+	<div class="box 189"   style="top: 1000px; left: 0900px;"></div>
+	<div class="box 190"   style="top: 1000px; left: 1000px;"></div>
+	<div class="box 191"   style="top: 1000px; left: 1100px;"></div>
+	<div class="box 192"   style="top: 1000px; left: 1200px;"></div>
+	<div class="box 193"   style="top: 1000px; left: 1300px;"></div>
+	<div class="box 194"   style="top: 1000px; left: 1400px;"></div>
+	<div class="box 195"   style="top: 1000px; left: 1500px;"></div>
+	<div class="box 196"   style="top: 1000px; left: 1600px;"></div>
+	<div class="box 197"   style="top: 1000px; left: 1700px;"></div>
+	<div class="box 198"   style="top: 1000px; left: 1800px;"></div>
+	<div class="box 199"   style="top: 1000px; left: 1900px;"></div>
+	<div class="box 200"   style="top: 1000px; left: 2000px;"></div>
+
+	<div class="wall 000"  style="top: 0000px; left: 0000px;"></div>
+
+	<div class="wall 001"  style="top: 0000px; left: 0000px; background-image: url(angle.jpg);"></div>
+	<div class="wall 002"  style="top: 0000px; left: 0100px;"></div>
+	<div class="wall 003"  style="top: 0000px; left: 0200px;"></div>
+	<div class="wall 004"  style="top: 0000px; left: 0300px;"></div>
+	<div class="wall 005"  style="top: 0000px; left: 0400px;"></div>
+	<div class="wall 006"  style="top: 0000px; left: 0500px;"></div>
+	<div class="wall 007"  style="top: 0000px; left: 0600px;"></div>
+	<div class="wall 008"  style="top: 0000px; left: 0700px;"></div>
+	<div class="wall 009"  style="top: 0000px; left: 0800px;"></div>
+	<div class="wall 010"  style="top: 0000px; left: 0900px;"></div>
+	<div class="wall 011"  style="top: 0000px; left: 1000px;"></div>
+	<div class="wall 012"  style="top: 0000px; left: 1100px;"></div>
+	<div class="wall 013"  style="top: 0000px; left: 1200px;"></div>
+	<div class="wall 014"  style="top: 0000px; left: 1300px;"></div>
+	<div class="wall 015"  style="top: 0000px; left: 1400px;"></div>
+	<div class="wall 016"  style="top: 0000px; left: 1500px;"></div>
+	<div class="wall 017"  style="top: 0000px; left: 1600px;"></div>
+	<div class="wall 018"  style="top: 0000px; left: 1700px;"></div>
+	<div class="wall 019"  style="top: 0000px; left: 1800px;"></div>
+	<div class="wall 020"  style="top: 0000px; left: 1900px;"></div>
+	<div class="wall 021"  style="top: 0000px; left: 2000px;"></div>
+	<div class="wall 021"  style="top: 0000px; left: 2100px; background-image: url(angle.jpg);"></div>
+
+	<div class="wall 022"  style="top: 0100px; left: 0000px; background-image: url(angle.jpg);"></div>
+	<div class="wall 023"  style="top: 0100px; left: 2100px; background-image: url(angle.jpg);"></div>
+
+	<div class="wall 024"  style="top: 0200px; left: 0000px; background-image: url(angle.jpg);"></div>
+	<div class="wall 025"  style="top: 0200px; left: 2100px; background-image: url(angle.jpg);"></div>
+
+	<div class="wall 026"  style="top: 0300px; left: 0000px; background-image: url(angle.jpg);"></div>
+	<div class="wall 027"  style="top: 0300px; left: 2100px; background-image: url(angle.jpg);"></div>
+
+	<div class="wall 028"  style="top: 0400px; left: 0000px; background-image: url(angle.jpg);"></div>
+	<div class="wall 029"  style="top: 0400px; left: 2100px; background-image: url(angle.jpg);"></div>
+
+	<div class="wall 030"  style="top: 0500px; left: 0000px; background-image: url(angle.jpg);"></div>
+	<div class="wall 031"  style="top: 0500px; left: 2100px; background-image: url(angle.jpg);"></div>
+
+	<div class="wall 032"  style="top: 0600px; left: 0000px; background-image: url(angle.jpg);"></div>
+	<div class="wall 033"  style="top: 0600px; left: 2100px; background-image: url(angle.jpg);"></div>
+
+	<div class="wall 034"  style="top: 0700px; left: 0000px; background-image: url(angle.jpg);"></div>
+	<div class="wall 035"  style="top: 0700px; left: 2100px; background-image: url(angle.jpg);"></div>
+
+	<div class="wall 036"  style="top: 0800px; left: 0000px; background-image: url(angle.jpg);"></div>
+	<div class="wall 037"  style="top: 0800px; left: 2100px; background-image: url(angle.jpg);"></div>
+
+	<div class="wall 038"  style="top: 0900px; left: 0000px; background-image: url(angle.jpg);"></div>
+	<div class="wall 039"  style="top: 0900px; left: 2100px; background-image: url(angle.jpg);"></div>
+
+	<div class="wall 040"  style="top: 1000px; left: 0000px; background-image: url(angle.jpg);"></div>
+	<div class="wall 041"  style="top: 1000px; left: 2100px; background-image: url(angle.jpg);"></div>
+
+	<div class="wall 042"  style="top: 1100px; left: 0000px; background-image: url(angle.jpg);"></div>
+	<div class="wall 043"  style="top: 1100px; left: 0100px;"></div>
+	<div class="wall 044"  style="top: 1100px; left: 0200px;"></div>
+	<div class="wall 045"  style="top: 1100px; left: 0300px;"></div>
+	<div class="wall 046"  style="top: 1100px; left: 0400px;"></div>
+	<div class="wall 047"  style="top: 1100px; left: 0500px;"></div>
+	<div class="wall 048"  style="top: 1100px; left: 0600px;"></div>
+	<div class="wall 049"  style="top: 1100px; left: 0700px;"></div>
+	<div class="wall 050"  style="top: 1100px; left: 0800px;"></div>
+	<div class="wall 051"  style="top: 1100px; left: 0900px;"></div>
+	<div class="wall 052"  style="top: 1100px; left: 1000px;"></div>
+	<div class="wall 012"  style="top: 1100px; left: 1100px;"></div>
+	<div class="wall 013"  style="top: 1100px; left: 1200px;"></div>
+	<div class="wall 014"  style="top: 1100px; left: 1300px;"></div>
+	<div class="wall 015"  style="top: 1100px; left: 1400px;"></div>
+	<div class="wall 016"  style="top: 1100px; left: 1500px;"></div>
+	<div class="wall 017"  style="top: 1100px; left: 1600px;"></div>
+	<div class="wall 018"  style="top: 1100px; left: 1700px;"></div>
+	<div class="wall 019"  style="top: 1100px; left: 1800px;"></div>
+	<div class="wall 020"  style="top: 1100px; left: 1900px;"></div>
+	<div class="wall 021"  style="top: 1100px; left: 2000px;"></div>
+	<div class="wall 021"  style="top: 1100px; left: 2100px; background-image: url(angle.jpg);"></div>
+
+	<div class="player"    style=""></div>
+
+	<div class="bomb 000"  style="top: 0000px; left: 0000px;"></div>
+
+	<div class="bomb 001"  style="top: 0100px; left: 0100px;"></div>
+	<div class="bomb 002"  style="top: 0100px; left: 0200px;"></div>
+	<div class="bomb 003"  style="top: 0100px; left: 0300px;"></div>
+	<div class="bomb 004"  style="top: 0100px; left: 0400px;"></div>
+	<div class="bomb 005"  style="top: 0100px; left: 0500px;"></div>
+	<div class="bomb 006"  style="top: 0100px; left: 0600px;"></div>
+	<div class="bomb 007"  style="top: 0100px; left: 0700px;"></div>
+	<div class="bomb 008"  style="top: 0100px; left: 0800px;"></div>
+	<div class="bomb 009"  style="top: 0100px; left: 0900px;"></div>
+	<div class="bomb 010"  style="top: 0100px; left: 1000px;"></div>
+	<div class="bomb 011"  style="top: 0100px; left: 1100px;"></div>
+	<div class="bomb 012"  style="top: 0100px; left: 1200px;"></div>
+	<div class="bomb 013"  style="top: 0100px; left: 1300px;"></div>
+	<div class="bomb 014"  style="top: 0100px; left: 1400px;"></div>
+	<div class="bomb 015"  style="top: 0100px; left: 1500px;"></div>
+	<div class="bomb 016"  style="top: 0100px; left: 1600px;"></div>
+	<div class="bomb 017"  style="top: 0100px; left: 1700px;"></div>
+	<div class="bomb 018"  style="top: 0100px; left: 1800px;"></div>
+	<div class="bomb 019"  style="top: 0100px; left: 1900px;"></div>
+	<div class="bomb 020"  style="top: 0100px; left: 2000px;"></div>
+
+	<div class="bomb 021"  style="top: 0200px; left: 0100px;"></div>
+	<div class="bomb 022"  style="top: 0200px; left: 0200px;"></div>
+	<div class="bomb 023"  style="top: 0200px; left: 0300px;"></div>
+	<div class="bomb 024"  style="top: 0200px; left: 0400px;"></div>
+	<div class="bomb 025"  style="top: 0200px; left: 0500px;"></div>
+	<div class="bomb 026"  style="top: 0200px; left: 0600px;"></div>
+	<div class="bomb 027"  style="top: 0200px; left: 0700px;"></div>
+	<div class="bomb 028"  style="top: 0200px; left: 0800px;"></div>
+	<div class="bomb 029"  style="top: 0200px; left: 0900px;"></div>
+	<div class="bomb 030"  style="top: 0200px; left: 1000px;"></div>
+	<div class="bomb 031"  style="top: 0200px; left: 1100px;"></div>
+	<div class="bomb 032"  style="top: 0200px; left: 1200px;"></div>
+	<div class="bomb 033"  style="top: 0200px; left: 1300px;"></div>
+	<div class="bomb 034"  style="top: 0200px; left: 1400px;"></div>
+	<div class="bomb 035"  style="top: 0200px; left: 1500px;"></div>
+	<div class="bomb 036"  style="top: 0200px; left: 1600px;"></div>
+	<div class="bomb 037"  style="top: 0200px; left: 1700px;"></div>
+	<div class="bomb 038"  style="top: 0200px; left: 1800px;"></div>
+	<div class="bomb 039"  style="top: 0200px; left: 1900px;"></div>
+	<div class="bomb 040"  style="top: 0200px; left: 2000px;"></div>
+
+	<div class="bomb 041"  style="top: 0300px; left: 0100px;"></div>
+	<div class="bomb 042"  style="top: 0300px; left: 0200px;"></div>
+	<div class="bomb 043"  style="top: 0300px; left: 0300px;"></div>
+	<div class="bomb 044"  style="top: 0300px; left: 0400px;"></div>
+	<div class="bomb 045"  style="top: 0300px; left: 0500px;"></div>
+	<div class="bomb 046"  style="top: 0300px; left: 0600px;"></div>
+	<div class="bomb 047"  style="top: 0300px; left: 0700px;"></div>
+	<div class="bomb 048"  style="top: 0300px; left: 0800px;"></div>
+	<div class="bomb 049"  style="top: 0300px; left: 0900px;"></div>
+	<div class="bomb 050"  style="top: 0300px; left: 1000px;"></div>
+	<div class="bomb 051"  style="top: 0300px; left: 1100px;"></div>
+	<div class="bomb 052"  style="top: 0300px; left: 1200px;"></div>
+	<div class="bomb 053"  style="top: 0300px; left: 1300px;"></div>
+	<div class="bomb 054"  style="top: 0300px; left: 1400px;"></div>
+	<div class="bomb 055"  style="top: 0300px; left: 1500px;"></div>
+	<div class="bomb 056"  style="top: 0300px; left: 1600px;"></div>
+	<div class="bomb 057"  style="top: 0300px; left: 1700px;"></div>
+	<div class="bomb 058"  style="top: 0300px; left: 1800px;"></div>
+	<div class="bomb 059"  style="top: 0300px; left: 1900px;"></div>
+	<div class="bomb 060"  style="top: 0300px; left: 2000px;"></div>
+
+	<div class="bomb 061"  style="top: 0400px; left: 0100px;"></div>
+	<div class="bomb 062"  style="top: 0400px; left: 0200px;"></div>
+	<div class="bomb 063"  style="top: 0400px; left: 0300px;"></div>
+	<div class="bomb 064"  style="top: 0400px; left: 0400px;"></div>
+	<div class="bomb 065"  style="top: 0400px; left: 0500px;"></div>
+	<div class="bomb 066"  style="top: 0400px; left: 0600px;"></div>
+	<div class="bomb 067"  style="top: 0400px; left: 0700px;"></div>
+	<div class="bomb 068"  style="top: 0400px; left: 0800px;"></div>
+	<div class="bomb 069"  style="top: 0400px; left: 0900px;"></div>
+	<div class="bomb 070"  style="top: 0400px; left: 1000px;"></div>
+	<div class="bomb 071"  style="top: 0400px; left: 1100px;"></div>
+	<div class="bomb 072"  style="top: 0400px; left: 1200px;"></div>
+	<div class="bomb 073"  style="top: 0400px; left: 1300px;"></div>
+	<div class="bomb 074"  style="top: 0400px; left: 1400px;"></div>
+	<div class="bomb 075"  style="top: 0400px; left: 1500px;"></div>
+	<div class="bomb 076"  style="top: 0400px; left: 1600px;"></div>
+	<div class="bomb 077"  style="top: 0400px; left: 1700px;"></div>
+	<div class="bomb 078"  style="top: 0400px; left: 1800px;"></div>
+	<div class="bomb 079"  style="top: 0400px; left: 1900px;"></div>
+	<div class="bomb 080"  style="top: 0400px; left: 2000px;"></div>
+
+	<div class="bomb 081"  style="top: 0500px; left: 0100px;"></div>
+	<div class="bomb 082"  style="top: 0500px; left: 0200px;"></div>
+	<div class="bomb 083"  style="top: 0500px; left: 0300px;"></div>
+	<div class="bomb 084"  style="top: 0500px; left: 0400px;"></div>
+	<div class="bomb 085"  style="top: 0500px; left: 0500px;"></div>
+	<div class="bomb 086"  style="top: 0500px; left: 0600px;"></div>
+	<div class="bomb 087"  style="top: 0500px; left: 0700px;"></div>
+	<div class="bomb 088"  style="top: 0500px; left: 0800px;"></div>
+	<div class="bomb 089"  style="top: 0500px; left: 0900px;"></div>
+	<div class="bomb 090"  style="top: 0500px; left: 1000px;"></div>
+	<div class="bomb 091"  style="top: 0500px; left: 1100px;"></div>
+	<div class="bomb 092"  style="top: 0500px; left: 1200px;"></div>
+	<div class="bomb 093"  style="top: 0500px; left: 1300px;"></div>
+	<div class="bomb 094"  style="top: 0500px; left: 1400px;"></div>
+	<div class="bomb 095"  style="top: 0500px; left: 1500px;"></div>
+	<div class="bomb 096"  style="top: 0500px; left: 1600px;"></div>
+	<div class="bomb 097"  style="top: 0500px; left: 1700px;"></div>
+	<div class="bomb 098"  style="top: 0500px; left: 1800px;"></div>
+	<div class="bomb 099"  style="top: 0500px; left: 1900px;"></div>
+	<div class="bomb 100"  style="top: 0500px; left: 2000px;"></div>
+
+	<div class="bomb 101"  style="top: 0600px; left: 0100px;"></div>
+	<div class="bomb 102"  style="top: 0600px; left: 0200px;"></div>
+	<div class="bomb 103"  style="top: 0600px; left: 0300px;"></div>
+	<div class="bomb 104"  style="top: 0600px; left: 0400px;"></div>
+	<div class="bomb 105"  style="top: 0600px; left: 0500px;"></div>
+	<div class="bomb 106"  style="top: 0600px; left: 0600px;"></div>
+	<div class="bomb 107"  style="top: 0600px; left: 0700px;"></div>
+	<div class="bomb 108"  style="top: 0600px; left: 0800px;"></div>
+	<div class="bomb 109"  style="top: 0600px; left: 0900px;"></div>
+	<div class="bomb 110"  style="top: 0600px; left: 1000px;"></div>
+	<div class="bomb 111"  style="top: 0600px; left: 1100px;"></div>
+	<div class="bomb 112"  style="top: 0600px; left: 1200px;"></div>
+	<div class="bomb 113"  style="top: 0600px; left: 1300px;"></div>
+	<div class="bomb 114"  style="top: 0600px; left: 1400px;"></div>
+	<div class="bomb 115"  style="top: 0600px; left: 1500px;"></div>
+	<div class="bomb 116"  style="top: 0600px; left: 1600px;"></div>
+	<div class="bomb 117"  style="top: 0600px; left: 1700px;"></div>
+	<div class="bomb 118"  style="top: 0600px; left: 1800px;"></div>
+	<div class="bomb 119"  style="top: 0600px; left: 1900px;"></div>
+	<div class="bomb 120"  style="top: 0600px; left: 2000px;"></div>
+
+	<div class="bomb 121"  style="top: 0700px; left: 0100px;"></div>
+	<div class="bomb 122"  style="top: 0700px; left: 0200px;"></div>
+	<div class="bomb 123"  style="top: 0700px; left: 0300px;"></div>
+	<div class="bomb 124"  style="top: 0700px; left: 0400px;"></div>
+	<div class="bomb 125"  style="top: 0700px; left: 0500px;"></div>
+	<div class="bomb 126"  style="top: 0700px; left: 0600px;"></div>
+	<div class="bomb 127"  style="top: 0700px; left: 0700px;"></div>
+	<div class="bomb 128"  style="top: 0700px; left: 0800px;"></div>
+	<div class="bomb 129"  style="top: 0700px; left: 0900px;"></div>
+	<div class="bomb 130"  style="top: 0700px; left: 1000px;"></div>
+	<div class="bomb 131"  style="top: 0700px; left: 1100px;"></div>
+	<div class="bomb 132"  style="top: 0700px; left: 1200px;"></div>
+	<div class="bomb 133"  style="top: 0700px; left: 1300px;"></div>
+	<div class="bomb 134"  style="top: 0700px; left: 1400px;"></div>
+	<div class="bomb 135"  style="top: 0700px; left: 1500px;"></div>
+	<div class="bomb 136"  style="top: 0700px; left: 1600px;"></div>
+	<div class="bomb 137"  style="top: 0700px; left: 1700px;"></div>
+	<div class="bomb 138"  style="top: 0700px; left: 1800px;"></div>
+	<div class="bomb 139"  style="top: 0700px; left: 1900px;"></div>
+	<div class="bomb 140"  style="top: 0700px; left: 2000px;"></div>
+
+	<div class="bomb 141"  style="top: 0800px; left: 0100px;"></div>
+	<div class="bomb 142"  style="top: 0800px; left: 0200px;"></div>
+	<div class="bomb 143"  style="top: 0800px; left: 0300px;"></div>
+	<div class="bomb 144"  style="top: 0800px; left: 0400px;"></div>
+	<div class="bomb 145"  style="top: 0800px; left: 0500px;"></div>
+	<div class="bomb 146"  style="top: 0800px; left: 0600px;"></div>
+	<div class="bomb 147"  style="top: 0800px; left: 0700px;"></div>
+	<div class="bomb 148"  style="top: 0800px; left: 0800px;"></div>
+	<div class="bomb 149"  style="top: 0800px; left: 0900px;"></div>
+	<div class="bomb 150"  style="top: 0800px; left: 1000px;"></div>
+	<div class="bomb 151"  style="top: 0800px; left: 1100px;"></div>
+	<div class="bomb 152"  style="top: 0800px; left: 1200px;"></div>
+	<div class="bomb 153"  style="top: 0800px; left: 1300px;"></div>
+	<div class="bomb 154"  style="top: 0800px; left: 1400px;"></div>
+	<div class="bomb 155"  style="top: 0800px; left: 1500px;"></div>
+	<div class="bomb 156"  style="top: 0800px; left: 1600px;"></div>
+	<div class="bomb 157"  style="top: 0800px; left: 1700px;"></div>
+	<div class="bomb 158"  style="top: 0800px; left: 1800px;"></div>
+	<div class="bomb 159"  style="top: 0800px; left: 1900px;"></div>
+	<div class="bomb 160"  style="top: 0800px; left: 2000px;"></div>
+
+	<div class="bomb 161"  style="top: 0900px; left: 0100px;"></div>
+	<div class="bomb 162"  style="top: 0900px; left: 0200px;"></div>
+	<div class="bomb 163"  style="top: 0900px; left: 0300px;"></div>
+	<div class="bomb 164"  style="top: 0900px; left: 0400px;"></div>
+	<div class="bomb 165"  style="top: 0900px; left: 0500px;"></div>
+	<div class="bomb 166"  style="top: 0900px; left: 0600px;"></div>
+	<div class="bomb 167"  style="top: 0900px; left: 0700px;"></div>
+	<div class="bomb 168"  style="top: 0900px; left: 0800px;"></div>
+	<div class="bomb 169"  style="top: 0900px; left: 0900px;"></div>
+	<div class="bomb 170"  style="top: 0900px; left: 1000px;"></div>
+	<div class="bomb 171"  style="top: 0900px; left: 1100px;"></div>
+	<div class="bomb 172"  style="top: 0900px; left: 1200px;"></div>
+	<div class="bomb 173"  style="top: 0900px; left: 1300px;"></div>
+	<div class="bomb 174"  style="top: 0900px; left: 1400px;"></div>
+	<div class="bomb 175"  style="top: 0900px; left: 1500px;"></div>
+	<div class="bomb 176"  style="top: 0900px; left: 1600px;"></div>
+	<div class="bomb 177"  style="top: 0900px; left: 1700px;"></div>
+	<div class="bomb 178"  style="top: 0900px; left: 1800px;"></div>
+	<div class="bomb 179"  style="top: 0900px; left: 1900px;"></div>
+	<div class="bomb 180"  style="top: 0900px; left: 2000px;"></div>
+
+	<div class="bomb 181"  style="top: 1000px; left: 0100px;"></div>
+	<div class="bomb 182"  style="top: 1000px; left: 0200px;"></div>
+	<div class="bomb 183"  style="top: 1000px; left: 0300px;"></div>
+	<div class="bomb 184"  style="top: 1000px; left: 0400px;"></div>
+	<div class="bomb 185"  style="top: 1000px; left: 0500px;"></div>
+	<div class="bomb 186"  style="top: 1000px; left: 0600px;"></div>
+	<div class="bomb 187"  style="top: 1000px; left: 0700px;"></div>
+	<div class="bomb 188"  style="top: 1000px; left: 0800px;"></div>
+	<div class="bomb 189"  style="top: 1000px; left: 0900px;"></div>
+	<div class="bomb 190"  style="top: 1000px; left: 1000px;"></div>
+	<div class="bomb 191"  style="top: 1000px; left: 1100px;"></div>
+	<div class="bomb 192"  style="top: 1000px; left: 1200px;"></div>
+	<div class="bomb 193"  style="top: 1000px; left: 1300px;"></div>
+	<div class="bomb 194"  style="top: 1000px; left: 1400px;"></div>
+	<div class="bomb 195"  style="top: 1000px; left: 1500px;"></div>
+	<div class="bomb 196"  style="top: 1000px; left: 1600px;"></div>
+	<div class="bomb 197"  style="top: 1000px; left: 1700px;"></div>
+	<div class="bomb 198"  style="top: 1000px; left: 1800px;"></div>
+	<div class="bomb 199"  style="top: 1000px; left: 1900px;"></div>
+	<div class="bomb 200"  style="top: 1000px; left: 2000px;"></div>
+
+	<div class="upGrey"    style="top: 0000px; left: 2300px;"></div>
+	<div class="downGrey"  style="top: 0200px; left: 2300px;"></div>
+	<div class="leftGrey"  style="top: 0100px; left: 2200px;"></div>
+	<div class="rightGrey" style="top: 0100px; left: 2400px;"></div>
+
+	<div class="up"        style="top: 0000px; left: 2300px;"></div>
+	<div class="down"      style="top: 0200px; left: 2300px;"></div>
+	<div class="left"      style="top: 0100px; left: 2200px;"></div>
+	<div class="right"     style="top: 0100px; left: 2400px;"></div>
+
+	<script type="text/javascript">
+		
+		let player = document.querySelector(".player")
+		let playerTop = 500
+		let playerLeft = 1000
+		player.style.top = playerTop + "px"
+		player.style.left = playerLeft + "px"
+
+		let up = document.querySelector(".up")
+		let down = document.querySelector(".down")
+		let left = document.querySelector(".left")
+		let right = document.querySelector(".right")
+
+		let box = document.querySelectorAll(".box")
+
+		let bomb = document.querySelectorAll(".bomb")
+		let num = 90
+
+		let getRandom = function(){
+		let rand = Math.random() * 159;
+
+		let round = Math.round(rand);
+
+		return round + 21
+		}
+		let bombBOOM = function(){
+			if (num==random) {
+				alert("YOU DIED")
+			}
+		}
+
+		let bomb3x3 = function(){
+			let random = getRandom()
+			bomb[random].style.opacity = "75%"
+			let BOOM = function(){
+				let upboom = random - 20
+				let downboom = random + 20
+				let leftboom = random - 1
+				let rightboom = random + 1
+				let upleftboom = random - 21
+				let uprightboom = random - 19
+				let downleftboom = random + 19
+				let downrightboom = random + 21
+
+				if (random==num||upboom==num||downboom==num||leftboom==num||rightboom==num||upleftboom==num||uprightboom==num||downleftboom==num||downrightboom==num) {
+					alert("YOU DIED")
+
+				}
+				bomb[random].style.opacity = "0%"
+			}
+			setTimeout(BOOM, 3000)
+		}
+
+		setInterval(bomb3x3, 1000)
+
+		up.onclick = function(){
+			playerTop = playerTop - 100
+			player.style.top = playerTop + "px"
+			num = num - 20
+			if (num==1) {
+				up.style.display = "none"
+				down.style.display = "block"
+				left.style.display = "none"
+				right.style.display = "block"
+			}
+			if (num==20) {
+				up.style.display = "none"
+				down.style.display = "block"
+				left.style.display = "block"
+				right.style.display = "none"
+			}
+			if (num==181) {
+				up.style.display = "block"
+				down.style.display = "none"
+				left.style.display = "none"
+				right.style.display = "block"
+			}
+			if (num==200) {
+				up.style.display = "block"
+				down.style.display = "none"
+				left.style.display = "block"
+				right.style.display = "none"
+			}
+			if (num==2||num==3||num==4||num==5||num==6||num==7||num==8||num==9||num==10||num==11||num==12||num==13||num==14||num==15||num==16||num==17||num==18||num==19) {
+				up.style.display = "none"
+				down.style.display = "block"
+				left.style.display = "block"
+				right.style.display = "block"
+			}
+			if (num==182||num==183||num==184|num==185||num==186||num==187||num==188||num==189||num==190||num==191||num==192||num==193||num==194||num==195||num==196||num==197||num==198||num==199) {
+				up.style.display = "block"
+				down.style.display = "none"
+				left.style.display = "block"
+				right.style.display = "block"
+			}
+			if (num==21||num==41||num==61||num==81||num==101||num==121||num==141||num==161) {
+				up.style.display = "block"
+				down.style.display = "block"
+				left.style.display = "none"
+				right.style.display = "block"
+			}
+			if (num==40||num==60||num==80||num==100||num==120||num==140||num==160||num==180) {
+				up.style.display = "block"
+				down.style.display = "block"
+				left.style.display = "block"
+				right.style.display = "none"
+			}
+			if (num==22||num==23||num==24||num==25||num==26||num==27||num==28||num==29||num==30||num==31||num==32||num==33||num==34||num==35||num==36||num==37||num==38||num==39||num==42||num==43||num==44||num==45||num==46||num==47||num==48||num==49||num==50||num==51||num==52||num==53||num==54||num==55||num==56||num==57||num==58||num==59||num==62||num==63||num==64||num==65||num==66||num==67||num==68||num==69||num==70||num==71||num==72||num==73||num==74||num==75||num==76||num==77||num==78||num==79||num==82||num==83||num==84||num==85||num==86||num==87||num==88||num==89||num==90||num==91||num==92||num==93||num==94||num==95||num==96||num==97||num==98||num==99||num==102||num==103||num==104||num==105||num==106||num==107||num==108||num==109||num==110||num==111||num==112||num==113||num==114||num==115||num==116||num==117||num==118||num==119||num==122||num==123||num==124||num==125||num==126||num==127||num==128||num==129||num==130||num==131||num==132||num==133||num==134||num==135||num==136||num==137||num==138||num==139||num==142||num==143||num==144||num==145||num==146||num==147||num==148||num==149||num==150||num==151||num==152||num==153||num==154||num==155||num==156||num==157||num==158||num==159||num==162||num==163||num==164||num==165||num==166||num==167||num==168||num==169||num==170||num==171||num==172||num==173||num==174||num==175||num==176||num==177||num==178||num==179) {
+				up.style.display = "block"
+				down.style.display = "block"
+				left.style.display = "block"
+				right.style.display = "block"
+			}
+		}
+		down.onclick = function(){
+			playerTop = playerTop + 100
+			player.style.top = playerTop + "px"
+			num = num + 20
+			if (num==1) {
+				up.style.display = "none"
+				down.style.display = "block"
+				left.style.display = "none"
+				right.style.display = "block"
+			}
+			if (num==20) {
+				up.style.display = "none"
+				down.style.display = "block"
+				left.style.display = "block"
+				right.style.display = "none"
+			}
+			if (num==181) {
+				up.style.display = "block"
+				down.style.display = "none"
+				left.style.display = "none"
+				right.style.display = "block"
+			}
+			if (num==200) {
+				up.style.display = "block"
+				down.style.display = "none"
+				left.style.display = "block"
+				right.style.display = "none"
+			}
+			if (num==2||num==3||num==4||num==5||num==6||num==7||num==8||num==9||num==10||num==11||num==12||num==13||num==14||num==15||num==16||num==17||num==18||num==19) {
+				up.style.display = "none"
+				down.style.display = "block"
+				left.style.display = "block"
+				right.style.display = "block"
+			}
+			if (num==182||num==183||num==184|num==185||num==186||num==187||num==188||num==189||num==190||num==191||num==192||num==193||num==194||num==195||num==196||num==197||num==198||num==199) {
+				up.style.display = "block"
+				down.style.display = "none"
+				left.style.display = "block"
+				right.style.display = "block"
+			}
+			if (num==21||num==41||num==61||num==81||num==101||num==121||num==141||num==161) {
+				up.style.display = "block"
+				down.style.display = "block"
+				left.style.display = "none"
+				right.style.display = "block"
+			}
+			if (num==40||num==60||num==80||num==100||num==120||num==140||num==160||num==180) {
+				up.style.display = "block"
+				down.style.display = "block"
+				left.style.display = "block"
+				right.style.display = "none"
+			}
+			if (num==22||num==23||num==24||num==25||num==26||num==27||num==28||num==29||num==30||num==31||num==32||num==33||num==34||num==35||num==36||num==37||num==38||num==39||num==42||num==43||num==44||num==45||num==46||num==47||num==48||num==49||num==50||num==51||num==52||num==53||num==54||num==55||num==56||num==57||num==58||num==59||num==62||num==63||num==64||num==65||num==66||num==67||num==68||num==69||num==70||num==71||num==72||num==73||num==74||num==75||num==76||num==77||num==78||num==79||num==82||num==83||num==84||num==85||num==86||num==87||num==88||num==89||num==90||num==91||num==92||num==93||num==94||num==95||num==96||num==97||num==98||num==99||num==102||num==103||num==104||num==105||num==106||num==107||num==108||num==109||num==110||num==111||num==112||num==113||num==114||num==115||num==116||num==117||num==118||num==119||num==122||num==123||num==124||num==125||num==126||num==127||num==128||num==129||num==130||num==131||num==132||num==133||num==134||num==135||num==136||num==137||num==138||num==139||num==142||num==143||num==144||num==145||num==146||num==147||num==148||num==149||num==150||num==151||num==152||num==153||num==154||num==155||num==156||num==157||num==158||num==159||num==162||num==163||num==164||num==165||num==166||num==167||num==168||num==169||num==170||num==171||num==172||num==173||num==174||num==175||num==176||num==177||num==178||num==179) {
+				up.style.display = "block"
+				down.style.display = "block"
+				left.style.display = "block"
+				right.style.display = "block"
+			}
+		}
+		left.onclick = function(){
+			playerLeft = playerLeft - 100
+			player.style.left = playerLeft + "px"
+			num = num - 1
+			if (num==1) {
+				up.style.display = "none"
+				down.style.display = "block"
+				left.style.display = "none"
+				right.style.display = "block"
+			}
+			if (num==20) {
+				up.style.display = "none"
+				down.style.display = "block"
+				left.style.display = "block"
+				right.style.display = "none"
+			}
+			if (num==181) {
+				up.style.display = "block"
+				down.style.display = "none"
+				left.style.display = "none"
+				right.style.display = "block"
+			}
+			if (num==200) {
+				up.style.display = "block"
+				down.style.display = "none"
+				left.style.display = "block"
+				right.style.display = "none"
+			}
+			if (num==2||num==3||num==4||num==5||num==6||num==7||num==8||num==9||num==10||num==11||num==12||num==13||num==14||num==15||num==16||num==17||num==18||num==19) {
+				up.style.display = "none"
+				down.style.display = "block"
+				left.style.display = "block"
+				right.style.display = "block"
+			}
+			if (num==182||num==183||num==184|num==185||num==186||num==187||num==188||num==189||num==190||num==191||num==192||num==193||num==194||num==195||num==196||num==197||num==198||num==199) {
+				up.style.display = "block"
+				down.style.display = "none"
+				left.style.display = "block"
+				right.style.display = "block"
+			}
+			if (num==21||num==41||num==61||num==81||num==101||num==121||num==141||num==161) {
+				up.style.display = "block"
+				down.style.display = "block"
+				left.style.display = "none"
+				right.style.display = "block"
+			}
+			if (num==40||num==60||num==80||num==100||num==120||num==140||num==160||num==180) {
+				up.style.display = "block"
+				down.style.display = "block"
+				left.style.display = "block"
+				right.style.display = "none"
+			}
+			if (num==22||num==23||num==24||num==25||num==26||num==27||num==28||num==29||num==30||num==31||num==32||num==33||num==34||num==35||num==36||num==37||num==38||num==39||num==42||num==43||num==44||num==45||num==46||num==47||num==48||num==49||num==50||num==51||num==52||num==53||num==54||num==55||num==56||num==57||num==58||num==59||num==62||num==63||num==64||num==65||num==66||num==67||num==68||num==69||num==70||num==71||num==72||num==73||num==74||num==75||num==76||num==77||num==78||num==79||num==82||num==83||num==84||num==85||num==86||num==87||num==88||num==89||num==90||num==91||num==92||num==93||num==94||num==95||num==96||num==97||num==98||num==99||num==102||num==103||num==104||num==105||num==106||num==107||num==108||num==109||num==110||num==111||num==112||num==113||num==114||num==115||num==116||num==117||num==118||num==119||num==122||num==123||num==124||num==125||num==126||num==127||num==128||num==129||num==130||num==131||num==132||num==133||num==134||num==135||num==136||num==137||num==138||num==139||num==142||num==143||num==144||num==145||num==146||num==147||num==148||num==149||num==150||num==151||num==152||num==153||num==154||num==155||num==156||num==157||num==158||num==159||num==162||num==163||num==164||num==165||num==166||num==167||num==168||num==169||num==170||num==171||num==172||num==173||num==174||num==175||num==176||num==177||num==178||num==179) {
+				up.style.display = "block"
+				down.style.display = "block"
+				left.style.display = "block"
+				right.style.display = "block"
+			}
+		}
+		right.onclick = function(){
+			playerLeft = playerLeft + 100
+			player.style.left = playerLeft + "px"
+			num = num + 1
+			if (num==1) {
+				up.style.display = "none"
+				down.style.display = "block"
+				left.style.display = "none"
+				right.style.display = "block"
+			}
+			if (num==20) {
+				up.style.display = "none"
+				down.style.display = "block"
+				left.style.display = "block"
+				right.style.display = "none"
+			}
+			if (num==181) {
+				up.style.display = "block"
+				down.style.display = "none"
+				left.style.display = "none"
+				right.style.display = "block"
+			}
+			if (num==200) {
+				up.style.display = "block"
+				down.style.display = "none"
+				left.style.display = "block"
+				right.style.display = "none"
+			}
+			if (num==2||num==3||num==4||num==5||num==6||num==7||num==8||num==9||num==10||num==11||num==12||num==13||num==14||num==15||num==16||num==17||num==18||num==19) {
+				up.style.display = "none"
+				down.style.display = "block"
+				left.style.display = "block"
+				right.style.display = "block"
+			}
+			if (num==182||num==183||num==184|num==185||num==186||num==187||num==188||num==189||num==190||num==191||num==192||num==193||num==194||num==195||num==196||num==197||num==198||num==199) {
+				up.style.display = "block"
+				down.style.display = "none"
+				left.style.display = "block"
+				right.style.display = "block"
+			}
+			if (num==21||num==41||num==61||num==81||num==101||num==121||num==141||num==161) {
+				up.style.display = "block"
+				down.style.display = "block"
+				left.style.display = "none"
+				right.style.display = "block"
+			}
+			if (num==40||num==60||num==80||num==100||num==120||num==140||num==160||num==180) {
+				up.style.display = "block"
+				down.style.display = "block"
+				left.style.display = "block"
+				right.style.display = "none"
+			}
+			if (num==22||num==23||num==24||num==25||num==26||num==27||num==28||num==29||num==30||num==31||num==32||num==33||num==34||num==35||num==36||num==37||num==38||num==39||num==42||num==43||num==44||num==45||num==46||num==47||num==48||num==49||num==50||num==51||num==52||num==53||num==54||num==55||num==56||num==57||num==58||num==59||num==62||num==63||num==64||num==65||num==66||num==67||num==68||num==69||num==70||num==71||num==72||num==73||num==74||num==75||num==76||num==77||num==78||num==79||num==82||num==83||num==84||num==85||num==86||num==87||num==88||num==89||num==90||num==91||num==92||num==93||num==94||num==95||num==96||num==97||num==98||num==99||num==102||num==103||num==104||num==105||num==106||num==107||num==108||num==109||num==110||num==111||num==112||num==113||num==114||num==115||num==116||num==117||num==118||num==119||num==122||num==123||num==124||num==125||num==126||num==127||num==128||num==129||num==130||num==131||num==132||num==133||num==134||num==135||num==136||num==137||num==138||num==139||num==142||num==143||num==144||num==145||num==146||num==147||num==148||num==149||num==150||num==151||num==152||num==153||num==154||num==155||num==156||num==157||num==158||num==159||num==162||num==163||num==164||num==165||num==166||num==167||num==168||num==169||num==170||num==171||num==172||num==173||num==174||num==175||num==176||num==177||num==178||num==179) {
+				up.style.display = "block"
+				down.style.display = "block"
+				left.style.display = "block"
+				right.style.display = "block"
+			}
+		}
+
+	</script>
+
+</body>
+</html>
